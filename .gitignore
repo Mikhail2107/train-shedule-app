@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 # api
-api/api_key.ts
+api
 .env
 # Editor directories and files
 .vscode/*

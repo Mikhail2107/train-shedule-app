@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { API_KEY } from './api/api_key';
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 interface StationTypeChoices {
   suburban?: {
