@@ -26,7 +26,7 @@ const NearStationList = ({ data }: NearStationListProps) => {
             <p>Тип: {station.station_type_name}</p>
             <p>Расстояние: {station.distance.toFixed(2)} км</p>
             <p>Транспорт: {station.transport_type === 'train' ? 'Поезд' : station.transport_type}</p>
-            <p>Время в пути:</p>
+            <p>Время в пути  до станции:</p>
             <span>Пешком:{travelTime(station.distance,5)}</span>
             <span>Бегом:{travelTime(station.distance,10)}</span>
 
