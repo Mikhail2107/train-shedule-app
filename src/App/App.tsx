@@ -42,20 +42,19 @@ interface ApiResponse {
   pagination: Pagination;
   stations: Station[];
 }
+const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/nearest_stations/';
 
 function App() {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [geolocationError, setGeolocationError] = useState<string | null>(null);
-  const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/nearest_stations/';
   const [longitude, setLongitude] = useState<number | null>(null);
   const [latitude, setLatitude] = useState<number | null>(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        // Исправлено: latitude - это position.coords.latitude
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
       },
@@ -67,7 +66,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (latitude === null || longitude === null) return; // Ждем получения координат
+    if (latitude === null || longitude === null) return; 
 
     const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
     const URL = encodeURIComponent(
@@ -88,6 +87,10 @@ function App() {
         setLoading(false);
       });
   }, [latitude, longitude]);
+  const stations =data && data.stations
+  const nearestStation =stations && stations[0];
+
+  console.log(nearestStation)
 
   if (loading) return <div>Загрузка данных...</div>;
   if (geolocationError) return <div>Ошибка геолокации: {geolocationError}</div>;
