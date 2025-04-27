@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ApiResponse } from '../interfaces';
 import NearStationList from '../NearStationList/NearStationList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScheduleNear from '../ScheduleNear/ScheduleNear';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/nearest_stations/';
+
+const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/';
 
 function App() {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -31,7 +34,7 @@ function App() {
 
     const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
     const URL = encodeURIComponent(
-      `${URL_DEFAULT}?apikey=${API_KEY}&format=json&lat=${latitude}&lng=${longitude}&distance=5&lang=ru_RU`
+      `${URL_DEFAULT}nearest_stations/?apikey=${API_KEY}&format=json&lat=${latitude}&lng=${longitude}&distance=15&lang=ru_RU`
     );
 
     fetch(CORS_PROXY + URL)
@@ -49,6 +52,13 @@ function App() {
       });
   }, [latitude, longitude]);
 
+  // useEffect (() => {
+  //   const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+  //   const URL = encodeURIComponent(
+  //     `${URL_DEFAULT}search/?apikey=${API_KEY}&format=json&from=${nearestStation.code}&to=s9612913&lang=ru_RU&page=1&date=2015-09-02`
+  //   );
+ 
+  // }, [])
   const stations = data?.stations;
   const nearestStation = stations?.[0];
 
@@ -60,8 +70,15 @@ function App() {
 
   return (
     <>
+      <Router>
+        <Routes>
+          <Route path={'/'} element={<NearStationList data={data} />}/>
+          <Route path={'/schedule'} element={<ScheduleNear  />}/>
+            
+        </Routes>
+      </Router>
       {nearestStation && <div>Ближайшая станция: {nearestStation.title}</div>}
-      <NearStationList data={data} />
+      
     </>
   );
 }
