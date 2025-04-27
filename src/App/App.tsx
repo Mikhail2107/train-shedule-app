@@ -52,7 +52,6 @@ function App() {
   const stations = data?.stations;
   const nearestStation = stations?.[0];
 
-  console.log(nearestStation);
 
   if (loading) return <div>Загрузка данных...</div>;
   if (geolocationError) return <div>Ошибка геолокации: {geolocationError}</div>;

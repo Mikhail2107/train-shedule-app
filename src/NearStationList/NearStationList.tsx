@@ -6,6 +6,7 @@ interface NearStationListProps {
 }
 
 const NearStationList = ({ data }: NearStationListProps) => {
+
   const travelTime = (distance:number, mode: number): string => {
     let hour:number | string = 0;
     let minutes:number | string = 0;
@@ -14,8 +15,9 @@ const NearStationList = ({ data }: NearStationListProps) => {
     hour = timeDistance.toFixed(0);
     minutes = ((timeDistance % 1) * 60).toFixed(0);
 
-    return `${hour} ч. ${minutes} `
+    return `${hour}ч. ${minutes}мин.`
   }
+  
   return (
     <div>
       <ul>
