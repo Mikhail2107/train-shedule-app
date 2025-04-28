@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { ApiResponse } from '../interfaces';
-import NearStationList from '../NearStationList/NearStationList';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NearStationList from '../NearStationList/NearStationList';
 import ScheduleNear from '../ScheduleNear/ScheduleNear';
 import MainPage from '../MainPage/MainPage';
+
+import { ApiResponse } from '../interfaces';
+import './App.css'
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -35,7 +37,7 @@ function App() {
 
     const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
     const URL = encodeURIComponent(
-      `${URL_DEFAULT}nearest_stations/?apikey=${API_KEY}&format=json&lat=${latitude}&lng=${longitude}&distance=15&lang=ru_RU`
+      `${URL_DEFAULT}nearest_stations/?apikey=${API_KEY}&format=json&lat=${latitude}&lng=${longitude}&distance=10&lang=ru_RU`
     );
 
     fetch(CORS_PROXY + URL)
@@ -60,8 +62,6 @@ function App() {
   //   );
  
   // }, [])
-  const stations = data?.stations;
-  const nearestStation = stations?.[0];
 
 
   if (loading) return <div>Загрузка данных...</div>;
@@ -71,7 +71,6 @@ function App() {
 
   return (
     <>
-      {/* <Link to={'/schedule'}>Расписание</Link> */}
       <Router>
         <Routes>
         <Route path={'/'} element={<MainPage />}/>
@@ -79,9 +78,7 @@ function App() {
           <Route path={'/schedule'} element={<ScheduleNear  />}/>
             
         </Routes>
-      </Router>
-      {nearestStation && <div>Ближайшая станция: {nearestStation.title}</div>}
-      
+      </Router>      
     </>
   );
 }

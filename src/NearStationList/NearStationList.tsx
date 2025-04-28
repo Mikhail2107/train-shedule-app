@@ -18,11 +18,15 @@ const NearStationList = ({ data }: NearStationListProps) => {
     return `${hour}ч. ${minutes}мин.`
   }
   
+  const stations = data?.stations;
+  const nearestStation = stations?.[0];
   return (
     <div>
-      <ul>
+      <h1>Ближайшая станция</h1>
+      <ul className='near-station-list__list'>        
+      {nearestStation && <div className='near-station-list__near-station'>Ближайшая станция: {nearestStation.title}</div>}
         {data.stations.map((station: Station) => (
-          <li key={station.code} style={{ marginBottom: '20px', padding: '10px', border: '1px solid #ddd' }}>
+          <li key={station.code} className='near-station-list__item'>
             <h3>{station.title}</h3>
             <p>Тип: {station.station_type_name}</p>
             <p>Расстояние: {station.distance.toFixed(2)} км</p>
