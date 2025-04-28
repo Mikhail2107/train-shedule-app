@@ -1,6 +1,11 @@
+@font-face {
+  font-family: 'PT Sants';
+  src: url('./assets/fonts/Raleway-Regular.ttf');
+}
 * {  
-  /* padding: 0; */
   margin: 0;
+  font-family: 'PT Sans';
+  color: #474a51;
 }
 body {
   margin: 0;
