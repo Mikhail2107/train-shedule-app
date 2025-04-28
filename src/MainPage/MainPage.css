@@ -1,0 +1,18 @@
+.main-page__box {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #474a51;
+  border-radius: 20px;
+}
+.main-page__link {
+  margin: 5px auto;
+  font-weight: 500;
+  color: #fff;
+  font-size: 24px;
+  padding:5px 10px;
+  background-color: #474a51;
+  outline: none;
+  text-decoration: none;
+  border-radius: 20px;
+}

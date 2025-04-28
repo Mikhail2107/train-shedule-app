@@ -8,8 +8,10 @@ const MainPage = () => {
 
   return (
       <>
-          <Link to={"/nearest"}>Блиайшие ствнции</Link>
-          <Link to={'/schedule'}>Расписание</Link>
+        <div className="main-page__box">
+          <Link to={"/nearest"} className='main-page__link'>Ближайшие станции</Link>
+          <Link to={'/schedule'} className='main-page__link'>Расписание</Link>
+        </div>          
       </>
   );
 };
