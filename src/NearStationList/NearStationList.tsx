@@ -21,20 +21,20 @@ const NearStationList = ({ data }: NearStationListProps) => {
   const stations = data?.stations;
   const nearestStation = stations?.[0];
   return (
-    <div>
+    <div className='near-station-container'>
       <h1>Ближайшая станция</h1>
       <ul className='near-station-list__list'>        
       {nearestStation && <div className='near-station-list__near-station'>Ближайшая станция: {nearestStation.title}</div>}
         {data.stations.map((station: Station) => (
           <li key={station.code} className='near-station-list__item'>
-            <h3>{station.title}</h3>
-            <p>Тип: {station.station_type_name}</p>
-            <p>Расстояние: {station.distance.toFixed(2)} км</p>
-            <p>Транспорт: {station.transport_type === 'train' ? 'Поезд' : station.transport_type}</p>
-            <p>Время в пути  до станции:</p>
-            <p>Пешком:{travelTime(station.distance,5)}</p>
-            <p>Бегом:{travelTime(station.distance,10)}</p>
-            {station.majority<=2 && <p>{station.code}</p>}
+            <h3 className='near-station-list__title'>{station.title}</h3>
+            <span className='near-station-list__item-info station-type'>Тип: {station.station_type_name}</span>
+            <span className='near-station-list__item-info station-distance'>Расстояние: {station.distance.toFixed(2)} км</span>
+            
+            <span className='near-station-list__item-info travel-time'>Время в пути  до станции:</span>
+            <span className='near-station-list__item-info travel-walk'>Пешком:{travelTime(station.distance,5)}</span>
+            <span className='near-station-list__item-info travel-run'>Бегом:{travelTime(station.distance,10)}</span>
+            {station.majority<=2 && <span className='station-majority'>{station.code}</span>}
             {station.type_choices.suburban && (
               <a 
                 href={station.type_choices.suburban.desktop_url} 
