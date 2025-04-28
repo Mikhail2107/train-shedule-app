@@ -5,7 +5,7 @@ const ScheduleNear = () => {
 
   return (
     <>
-    
+      <h1>Расписание электричек</h1>
     </>
   );
 };
