@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ApiResponse } from '../interfaces';
 import NearStationList from '../NearStationList/NearStationList';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ScheduleNear from '../ScheduleNear/ScheduleNear';
+import MainPage from '../MainPage/MainPage';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -70,9 +71,11 @@ function App() {
 
   return (
     <>
+      {/* <Link to={'/schedule'}>Расписание</Link> */}
       <Router>
         <Routes>
-          <Route path={'/'} element={<NearStationList data={data} />}/>
+        <Route path={'/'} element={<MainPage />}/>
+          <Route path={'/nearest'} element={<NearStationList data={data} />}/>
           <Route path={'/schedule'} element={<ScheduleNear  />}/>
             
         </Routes>
