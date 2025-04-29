@@ -1,86 +1,29 @@
-import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NearStationList from '../NearStationList/NearStationList';
 import ScheduleNear from '../ScheduleNear/ScheduleNear';
 import MainPage from '../MainPage/MainPage';
-
-import { ApiResponse } from '../interfaces';
-import './App.css'
-
-const API_KEY = import.meta.env.VITE_API_KEY;
-
-const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/';
+import { rootStore } from '../stores';
 
 function App() {
-  const [data, setData] = useState<ApiResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [geolocationError, setGeolocationError] = useState<string | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
-  const [latitude, setLatitude] = useState<number | null>(null);
+  const { stationStore } = rootStore;
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-      },
-      (error) => {
-        setGeolocationError("Не удалось получить геолокацию: " + error.message);
-        setLoading(false);
-      }
-    );
-  }, []);
-
-  useEffect(() => {
-    if (latitude === null || longitude === null) return;
-
-    const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
-    const URL = encodeURIComponent(
-      `${URL_DEFAULT}nearest_stations/?apikey=${API_KEY}&format=json&lat=${latitude}&lng=${longitude}&distance=10&lang=ru_RU`
-    );
-
-    fetch(CORS_PROXY + URL)
-      .then(response => {
-        if (!response.ok) throw new Error('Ошибка сети');
-        return response.json();
-      })
-      .then((data: ApiResponse) => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error.message);
-        setLoading(false);
-      });
-  }, [latitude, longitude]);
-
-  // useEffect (() => {
-  //   const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
-  //   const URL = encodeURIComponent(
-  //     `${URL_DEFAULT}search/?apikey=${API_KEY}&format=json&from=${nearestStation.code}&to=s9612913&lang=ru_RU&page=1&date=2015-09-02`
-  //   );
- 
-  // }, [])
-
-
-  if (loading) return <div>Загрузка данных...</div>;
-  if (geolocationError) return <div>Ошибка геолокации: {geolocationError}</div>;
-  if (error) return <div>Ошибка API: {error}</div>;
-  if (!data || !data.stations) return <div>Нет данных для отображения</div>;
+  if (stationStore.loading) return <div>Загрузка данных...</div>;
+  if (stationStore.geolocationError) return <div>Ошибка геолокации: {stationStore.geolocationError}</div>;
+  if (stationStore.error) return <div>Ошибка API: {stationStore.error}</div>;
+  if (!stationStore.data || !stationStore.data.stations) return <div>Нет данных для отображения</div>;
 
   return (
     <>
       <Router>
         <Routes>
-        <Route path={'/'} element={<MainPage />}/>
-          <Route path={'/nearest'} element={<NearStationList data={data} />}/>
-          <Route path={'/schedule'} element={<ScheduleNear  />}/>
-            
+          <Route path={'/'} element={<MainPage />} />
+          <Route path={'/nearest'} element={<NearStationList data={stationStore.data} />} />
+          <Route path={'/schedule'} element={<ScheduleNear />} />
         </Routes>
       </Router>      
     </>
   );
 }
 
-export default App;
+export default observer(App);

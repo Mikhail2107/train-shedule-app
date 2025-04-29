@@ -1,12 +1,15 @@
 import { Station, ApiResponse } from '../interfaces';
 import './NearStationList.css';
+import { observer } from 'mobx-react-lite';
+import { rootStore } from '../stores';
 
 interface NearStationListProps {
   data: ApiResponse;
 }
 
-const NearStationList = ({ data }: NearStationListProps) => {
-
+const NearStationList = observer(({ data }: NearStationListProps) => {
+  const { stationStore } = rootStore;
+  console.log(stationStore)
   const travelTime = (distance:number, mode: number): string => {
     let hour:number | string = 0;
     let minutes:number | string = 0;
@@ -60,6 +63,6 @@ const NearStationList = ({ data }: NearStationListProps) => {
       </ul>
     </div>
   );
-};
+});
 
 export default NearStationList;
