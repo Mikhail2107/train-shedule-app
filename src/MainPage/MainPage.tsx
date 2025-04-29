@@ -9,7 +9,7 @@ const MainPage = () => {
   return (
       <>
         <div className="main-page__box">
-          <Link to={"/nearest"} className='main-page__link'>Ближайшие станции</Link>
+          <Link to={'/nearest'} className='main-page__link'>Ближайшие станции</Link>
           <Link to={'/schedule'} className='main-page__link'>Расписание</Link>
         </div>          
       </>

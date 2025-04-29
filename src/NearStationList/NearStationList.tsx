@@ -10,6 +10,7 @@ interface NearStationListProps {
 const NearStationList = observer(({ data }: NearStationListProps) => {
   const { stationStore } = rootStore;
   console.log(stationStore)
+  
   const travelTime = (distance:number, mode: number): string => {
     let hour:number | string = 0;
     let minutes:number | string = 0;
