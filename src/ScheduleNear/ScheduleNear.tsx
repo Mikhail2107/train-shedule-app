@@ -12,7 +12,7 @@ const ScheduleNear = observer(() => {
     if (stationStore.data?.stations?.[0]?.code) {
       scheduleStore.fetchSchedule(stationStore.data.stations[0].code);
     }
-  }, [stationStore.data]);
+  }, [scheduleStore, stationStore.data]);
 
   return (
     <>
