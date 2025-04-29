@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { ApiResponse } from '../interfaces';
 
-// const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = import.meta.env.VITE_API_KEY;
 const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/';
 
 export class StationStore {
@@ -43,7 +43,7 @@ export class StationStore {
     try {
       const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
       const URL = encodeURIComponent(
-        `${URL_DEFAULT}nearest_stations/?apikey=697e0f81-c75e-4c92-9f96-fa06c75420d7&format=json&lat=${this.latitude}&lng=${this.longitude}&distance=10&lang=ru_RU`
+        `${URL_DEFAULT}nearest_stations/?apikey=${API_KEY}&format=json&lat=${this.latitude}&lng=${this.longitude}&distance=10&lang=ru_RU`
       );
 
       const response = await fetch(CORS_PROXY + URL);
