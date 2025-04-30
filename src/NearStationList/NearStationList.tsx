@@ -1,4 +1,4 @@
-import { Station, ApiResponse } from '../interfaces';
+import { Station, ApiResponse } from '../interfaces/interfaces';
 import './NearStationList.css';
 import { observer } from 'mobx-react-lite';
 import { rootStore } from '../stores';

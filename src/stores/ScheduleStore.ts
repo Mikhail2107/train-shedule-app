@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { ApiResponse } from '../interfaces'; 
+import { ApiResponse } from '../interfaces/interfaces'; 
 
 
 const API_KEY = import.meta.env.VITE_API_KEY;
