@@ -17,7 +17,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 outline: none;
-text-decoration: none;
+text-decoration: none;font-size: 1.5vw;
+
 }
 .near-station-list_link:hover {
 	font-weight: bold;
