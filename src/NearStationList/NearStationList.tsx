@@ -32,7 +32,7 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
       {nearestStation?.type_choices?.suburban?.desktop_url && (
       <Link 
         className='near-station-list_link' 
-        to={nearestStation.type_choices.suburban.desktop_url}
+        to={nearestStation.type_choices.suburban.touch_url}
       >
         Ближайшая станция: {nearestStation.title}
       </Link>
