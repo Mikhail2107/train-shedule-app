@@ -12,6 +12,17 @@ h1 {
 .near-station-list__near-station {
 
 }
+.near-station-list_link {
+display: flex;
+align-items: center;
+justify-content: center;
+outline: none;
+text-decoration: none;
+}
+.near-station-list_link:hover {
+	font-weight: bold;
+	color: gray;
+}
 .near-station-list__list {
   list-style: none;
 	padding: 0;

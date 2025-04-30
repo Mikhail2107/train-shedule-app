@@ -17,6 +17,7 @@ const ScheduleNear = observer(() => {
   return (
     <>
       <h1>Расписание электричек</h1>
+      <span>{}</span>
     </>
   );
 });

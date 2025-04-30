@@ -1,11 +1,12 @@
 import { makeAutoObservable, runInAction } from 'mobx';
+import { ApiResponse } from '../interfaces'; 
 
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/';
 
 export class ScheduleStore {
-  scheduleData: any = null;
+  scheduleData: ApiResponse  | null= null;
   loading = false;
   error: string | null = null;
 
@@ -28,7 +29,7 @@ export class ScheduleStore {
       const response = await fetch(CORS_PROXY + URL);
       if (!response.ok) throw new Error('Ошибка сети');
       
-      const data = await response.json();
+      const data:ApiResponse = await response.json();
       
       runInAction(() => {
         this.scheduleData = data;
