@@ -14,10 +14,12 @@ const ScheduleNear = observer(() => {
     }
   }, [scheduleStore, stationStore.data]);
 
+  console.log(scheduleStore.scheduleData?.segments)
   return (
     <>
       <h1>Расписание электричек</h1>
-      <span>{}</span>
+      <span>От {scheduleStore.scheduleData?.search.from.title} до {scheduleStore.scheduleData?.search.to.title}</span>
+      {/* <p>{scheduleStore.scheduleData?.segments}</p> */}
     </>
   );
 });

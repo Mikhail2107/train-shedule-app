@@ -27,7 +27,7 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
   const nearestStation = stations?.[0];
   return (
     <div className='near-station-container'>
-      <h1>Ближайшая станция</h1>
+      <h1>Ближайшая станция {nearestStation.code}</h1>
       <ul className='near-station-list__list'>        
       {nearestStation?.type_choices?.suburban?.desktop_url && (
       <Link 
@@ -46,7 +46,7 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
             <span className='near-station-list__item-info travel-time'>Время в пути  до станции:</span>
             <span className='near-station-list__item-info travel-walk'>Пешком:{travelTime(station.distance,5)}</span>
             <span className='near-station-list__item-info travel-run'>Бегом:{travelTime(station.distance,10)}</span>
-            {station.majority<=2 && <span className='station-majority'>{station.code}</span>}
+            {station.code === 's9613017' && <span className='station-majority'>{station.code}</span>}
             {station.type_choices.suburban && (
               <a 
                 href={station.type_choices.suburban.desktop_url} 
