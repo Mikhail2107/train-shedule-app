@@ -6,8 +6,7 @@ import { format } from 'date-fns';
 const API_KEY = import.meta.env.VITE_API_KEY;
 const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/';
 const formattedDate = format(new Date(), 'yyyy-MM-dd');
-
-console.log(formattedDate)
+ 
 export class ScheduleStore {
   scheduleData: YandexRaspSearchResponse  | null= null;
   loading = false;
@@ -17,7 +16,7 @@ export class ScheduleStore {
     makeAutoObservable(this);
   }
   
-  async fetchSchedule(from: string = 's9634290', to: string = 's9612981') {
+  async fetchSchedule(from: string = 's9612981', to: string = 's9613017') {
     try {
       runInAction(() => {
         this.loading = true;
@@ -33,7 +32,7 @@ export class ScheduleStore {
       if (!response.ok) throw new Error('Ошибка сети');
       
       const data:YandexRaspSearchResponse = await response.json();
-      console.log(data)
+       
       runInAction(() => {
         this.scheduleData = data;
         this.loading = false;

@@ -1,34 +1,75 @@
-
 import './ScheduleNear.css';
-
 import { observer } from 'mobx-react-lite';
 import { rootStore } from '../stores';
 import { useEffect } from 'react';
-import {format} from 'date-fns';
+import { format, parseISO } from 'date-fns';
+import { ru } from 'date-fns/locale';
 
 const ScheduleNear = observer(() => {
   const { scheduleStore, stationStore } = rootStore;
 
   useEffect(() => {
     if (stationStore.data?.stations?.[0]?.code) {
-      scheduleStore.fetchSchedule(stationStore.data.stations[25].code);
+      scheduleStore.fetchSchedule(stationStore.data.stations[0].code);
     }
   }, [scheduleStore, stationStore.data]);
 
-  console.log(scheduleStore.scheduleData?.segments[0])
+  const timeNow =  Date.now();
+   
+  const nearestTrains = scheduleStore.scheduleData?.segments
+    ?.filter(train => new Date(train.departure).getTime() >= timeNow).slice(0, 3)
+    .sort((a, b) => 
+      new Date(a.departure).getTime() - new Date(b.departure).getTime()
+    );
+
   return (
-    <>
+    <div className="schedule-container">
       <h1>Расписание электричек</h1>
-      <span>От {scheduleStore.scheduleData?.search.from.title} до {scheduleStore.scheduleData?.search.to.title}</span>
-      <ul>
-        {scheduleStore.scheduleData?.segments.map(el => (
-          <li>
-            <span>{format(el.departure, 'hh-mm') }- {format(el.arrival, 'hh-mm')}</span>
-          </li>
-        ))}
-      </ul>
       
-    </>
+      {scheduleStore.scheduleData?.search && (
+        <div className="route-info">
+          <h2>
+            Маршрут: {scheduleStore.scheduleData.search.from.title} →{' '}
+            {scheduleStore.scheduleData.search.to.title}
+          </h2>
+          <p>Дата: {format(new Date(scheduleStore.scheduleData.search.date), 'PPPP', { locale: ru })}</p>
+        </div>
+      )}
+
+      {scheduleStore.loading && <div className="loading">Загрузка расписания...</div>}
+
+      {nearestTrains?.length ? (
+        <ul className="train-list">
+          <h3>Ближайшие рейсы:</h3>
+          {nearestTrains.map((train, index) => (
+            <li key={index} className="train-item">
+              <div className="train-time">
+                <span className="departure">
+                  {format(parseISO(train.departure), 'HH:mm', { locale: ru })}
+                </span>
+                {' → '}
+                <span className="arrival">
+                  {format(parseISO(train.arrival), 'HH:mm', { locale: ru })}
+                </span>
+              </div>
+              <div className="train-info">
+                <span className="train-number">{train.thread.number}</span>
+                <span className="train-title">{train.thread.title}</span>
+                <span className="train-duration">
+                  В пути: {Math.floor(train.duration / 60)} мин
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        !scheduleStore.loading && <div className="no-trains">Нет доступных рейсов</div>
+      )}
+
+      {scheduleStore.error && (
+        <div className="error">Ошибка: {scheduleStore.error}</div>
+      )}
+    </div>
   );
 });
 
