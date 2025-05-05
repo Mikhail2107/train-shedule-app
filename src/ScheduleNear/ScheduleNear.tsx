@@ -10,14 +10,16 @@ const ScheduleNear = observer(() => {
 
   useEffect(() => {
     if (stationStore.data?.stations?.[0]?.code) {
-      scheduleStore.fetchSchedule(stationStore.data.stations[0].code);
+      const fromCode = stationStore.data.stations[0].code;
+      const toCode = fromCode === 's9612981' ? 's9613017' : 's9612981';
+      scheduleStore.fetchSchedule(fromCode, toCode);
     }
   }, [scheduleStore, stationStore.data]);
 
-  const timeNow =  Date.now();
+  const timeNow = Date.now();
    
-  const nearestTrains = scheduleStore.scheduleData?.segments?.
-    filter(train => new Date(train.departure).getTime() >= timeNow)
+  const nearestTrains = scheduleStore.scheduleData?.segments
+    ?.filter(train => new Date(train.departure).getTime() >= timeNow)
     .slice(0, 3)
     .sort((a, b) => 
       new Date(a.departure).getTime() - new Date(b.departure).getTime()

@@ -16,7 +16,7 @@ export class ScheduleStore {
     makeAutoObservable(this);
   }
   
-  async fetchSchedule(from: string, to: string = 's9613017') {
+  async fetchSchedule(from: string, to: string ) {
     try {
       runInAction(() => {
         this.loading = true;
