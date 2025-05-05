@@ -10,7 +10,7 @@ const ScheduleNear = observer(() => {
 
   useEffect(() => {
     if (stationStore.data?.stations?.[0]?.code) {
-      scheduleStore.fetchSchedule(stationStore.data.stations[3].code);
+      scheduleStore.fetchSchedule(stationStore.data.stations[0].code);
     }
   }, [scheduleStore, stationStore.data]);
 
