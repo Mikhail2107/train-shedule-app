@@ -10,24 +10,25 @@ const ScheduleNear = observer(() => {
 
   useEffect(() => {
     if (stationStore.data?.stations?.[0]?.code) {
-      scheduleStore.fetchSchedule(stationStore.data.stations[0].code);
+      scheduleStore.fetchSchedule(stationStore.data.stations[3].code);
     }
   }, [scheduleStore, stationStore.data]);
 
   const timeNow =  Date.now();
    
-  const nearestTrains = scheduleStore.scheduleData?.segments
-    ?.filter(train => new Date(train.departure).getTime() >= timeNow).slice(0, 3)
+  const nearestTrains = scheduleStore.scheduleData?.segments?.
+    filter(train => new Date(train.departure).getTime() >= timeNow)
+    .slice(0, 3)
     .sort((a, b) => 
       new Date(a.departure).getTime() - new Date(b.departure).getTime()
     );
 
   return (
-    <div className="schedule-container">
+    <div className="schedule-near-container">
       <h1>Расписание электричек</h1>
       
       {scheduleStore.scheduleData?.search && (
-        <div className="route-info">
+        <div className="schedule-near-route-info">
           <h2>
             Маршрут: {scheduleStore.scheduleData.search.from.title} →{' '}
             {scheduleStore.scheduleData.search.to.title}
@@ -39,23 +40,23 @@ const ScheduleNear = observer(() => {
       {scheduleStore.loading && <div className="loading">Загрузка расписания...</div>}
 
       {nearestTrains?.length ? (
-        <ul className="train-list">
+        <ul className="schedule-near-train-list">
           <h3>Ближайшие рейсы:</h3>
           {nearestTrains.map((train, index) => (
-            <li key={index} className="train-item">
-              <div className="train-time">
-                <span className="departure">
+            <li key={index} className="schedule-near-train-item">
+              <div className="schedule-near-train-time">
+                <span className="schedule-near-departure">
                   {format(parseISO(train.departure), 'HH:mm', { locale: ru })}
                 </span>
                 {' → '}
-                <span className="arrival">
+                <span className="schedule-near-arrival">
                   {format(parseISO(train.arrival), 'HH:mm', { locale: ru })}
                 </span>
               </div>
-              <div className="train-info">
-                <span className="train-number">{train.thread.number}</span>
-                <span className="train-title">{train.thread.title}</span>
-                <span className="train-duration">
+              <div className="schedule-near-train-info">
+                <span className="schedule-near-train-number">{train.thread.number}</span>
+                <span className="schedule-near-train-title">{train.thread.title}</span>
+                <span className="schedule-near-train-duration">
                   В пути: {Math.floor(train.duration / 60)} мин
                 </span>
               </div>
@@ -63,7 +64,7 @@ const ScheduleNear = observer(() => {
           ))}
         </ul>
       ) : (
-        !scheduleStore.loading && <div className="no-trains">Нет доступных рейсов</div>
+        !scheduleStore.loading && <div className="schedule-near-no-trains">Нет доступных рейсов</div>
       )}
 
       {scheduleStore.error && (
