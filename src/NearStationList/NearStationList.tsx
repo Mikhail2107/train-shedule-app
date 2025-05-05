@@ -37,16 +37,16 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
         Ближайшая станция: {nearestStation.title}
       </Link>
     )}
-        {data.stations.map((station: Station) => (
+        {data.stations.map((station: Station, i: number) => (
           <li key={station.code} className='near-station-list__item'>
             <h3 className='near-station-list__title'>{station.title}</h3>
-            <span className='near-station-list__item-info station-type'>Тип: {station.station_type_name}</span>
+            <span className='near-station-list__item-info station-type'>Тип: {i}</span>
             <span className='near-station-list__item-info station-distance'>Расстояние: {station.distance.toFixed(2)} км</span>
             
             <span className='near-station-list__item-info travel-time'>Время в пути  до станции:</span>
             <span className='near-station-list__item-info travel-walk'>Пешком:{travelTime(station.distance,5)}</span>
             <span className='near-station-list__item-info travel-run'>Бегом:{travelTime(station.distance,10)}</span>
-            {station.code === 's9613017' && <span className='station-majority'>{station.code}</span>}
+            {station.code && <span className='station-majority'>{station.code}</span>}
             {station.type_choices.suburban && (
               <a 
                 href={station.type_choices.suburban.desktop_url} 
