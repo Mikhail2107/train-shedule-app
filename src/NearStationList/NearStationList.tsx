@@ -1,7 +1,7 @@
 import { Station, ApiResponse } from '../interfaces/interfaces';
 import './NearStationList.css';
 import { observer } from 'mobx-react-lite';
-import { rootStore } from '../stores';
+// import { rootStore } from '../stores';
 import { Link } from 'react-router-dom';
 
 interface NearStationListProps {
@@ -9,8 +9,7 @@ interface NearStationListProps {
 }
 
 const NearStationList = observer(({ data }: NearStationListProps) => {
-  const { stationStore } = rootStore;
-  console.log(stationStore)
+  // const { stationStore } = rootStore;
   
   const travelTime = (distance:number, mode: number): string => {
     let hour:number | string = 0;
@@ -27,7 +26,7 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
   const nearestStation = stations?.[0];
   return (
     <div className='near-station-container'>
-      <h1>Ближайшая станция {nearestStation.code}</h1>
+      <h1>Ближайшая станция </h1>
       <ul className='near-station-list__list'>        
       {nearestStation?.type_choices?.suburban?.desktop_url && (
       <Link 
