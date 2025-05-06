@@ -68,10 +68,10 @@ export class ScheduleStore {
     }
   }
  
-  clearSavedData() {
-    localStorage.removeItem(STORAGE_KEY);
-    runInAction(() => {
-      this.scheduleData = null;
-    });
-  }
+  // clearSavedData() {
+  //   localStorage.removeItem(STORAGE_KEY);
+  //   runInAction(() => {
+  //     this.scheduleData = null;
+  //   });
+  // }
 }
