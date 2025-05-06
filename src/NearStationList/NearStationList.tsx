@@ -46,6 +46,7 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
             <span className='near-station-list__item-info travel-walk'>Пешком:{travelTime(station.distance,5)}</span>
             <span className='near-station-list__item-info travel-run'>Бегом:{travelTime(station.distance,10)}</span>
             {station.code && <span className='station-majority'>{station.code}</span>}
+            {station.majority && <span>{station.majority}</span>}
             {station.type_choices.suburban && (
               <a 
                 href={station.type_choices.suburban.desktop_url} 
