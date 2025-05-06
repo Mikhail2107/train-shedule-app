@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/';
-const STORAGE_KEY = 'yandex_rasp_schedule_data'; // Ключ для localStorage
+const STORAGE_KEY = 'yandex_rasp_schedule_data'; 
 
 export class ScheduleStore {
   scheduleData: YandexRaspSearchResponse | null = null;
@@ -13,10 +13,9 @@ export class ScheduleStore {
 
   constructor() {
     makeAutoObservable(this);
-    this.loadFromLocalStorage(); // Загружаем данные при инициализации
+    this.loadFromLocalStorage();  
   }
-
-  // Загрузка данных из localStorage
+ 
   private loadFromLocalStorage() {
     try {
       const savedData = localStorage.getItem(STORAGE_KEY);
@@ -29,8 +28,7 @@ export class ScheduleStore {
       console.error('Failed to parse saved schedule data', error);
     }
   }
-
-  // Сохранение данных в localStorage
+ 
   private saveToLocalStorage(data: YandexRaspSearchResponse) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
@@ -60,7 +58,7 @@ export class ScheduleStore {
       runInAction(() => {
         this.scheduleData = data;
         this.loading = false;
-        this.saveToLocalStorage(data); // Сохраняем новые данные
+        this.saveToLocalStorage(data);  
       });
     } catch (error) {
       runInAction(() => {
@@ -69,8 +67,7 @@ export class ScheduleStore {
       });
     }
   }
-
-  // Очистка сохраненных данных
+ 
   clearSavedData() {
     localStorage.removeItem(STORAGE_KEY);
     runInAction(() => {
