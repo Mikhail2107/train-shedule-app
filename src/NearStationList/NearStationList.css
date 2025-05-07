@@ -35,7 +35,6 @@ font-size: 1.5vw;
   display: grid;
   gap: 1vw;
   grid-template-columns: repeat(3, 1fr);
-  /* grid-template-rows: repeat(); */
 }
 .near-station-list__list{
   list-style: none;
@@ -54,7 +53,6 @@ font-size: 1.5vw;
   border: 2px solid 474747;
 	border-radius: 2vw;
 	margin: .5rem 0;
-	/* margin-bottom: 15px;  */
 	border: 2px solid #474747; 
 	box-shadow: 
 	  0 0 0 3px #fffff0,    
@@ -109,7 +107,6 @@ font-size: 1.5vw;
     display: grid;
     gap: 1vw;
     grid-template-columns: repeat(1, 1fr);
-    /* grid-template-rows: repeat(); */
   }
 
 }
