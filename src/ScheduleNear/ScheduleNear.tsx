@@ -17,7 +17,7 @@ const ScheduleNear = observer(() => {
       const fromCode = nearestStation.code;
       const toCode = fromCode === 's9612981' ? 's9613017' : 's9612981';
       scheduleStore.fetchSchedule(fromCode, toCode);
-    }, [nearestStation?.code]); 
+    }, [nearestStation?.code, scheduleStore]); 
 
   const timeNow = Date.now();
    
