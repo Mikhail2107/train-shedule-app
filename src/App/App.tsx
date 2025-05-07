@@ -20,9 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path={'/'} element={<MainPage />} />
-          <Route path={'/nearest'} element={<NearStationList 
-          // data={stationStore.data} 
-          />}/>
+          <Route path={'/nearest'} element={<NearStationList />}/>
           <Route path={'/schedule'} element={<ScheduleNear />} />
           <Route path={'/check-station'} element={<CheckSation />} />
 
