@@ -1,7 +1,7 @@
 # train-shedule-app
 
 Открыть приложение на Vercel:
-https://train-shedule-app-cnd5.vercel.app/
+https://train-shedule-app-4ny7.vercel.app/
  
 Приложение Расписание ближайших по времени электричек на станции расположенной шаговой  доступности или поблизости.
 
