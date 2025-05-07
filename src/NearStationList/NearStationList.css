@@ -33,7 +33,7 @@ font-size: 1.5vw;
 .near-station-list__list {
   padding: 0;  
   display: grid;
-  gap: 15px;
+  gap: 1vw;
   grid-template-columns: repeat(3, 1fr);
   /* grid-template-rows: repeat(); */
 }
@@ -47,19 +47,19 @@ font-size: 1.5vw;
 	justify-content: center;
 }
 .near-station-list__item {
+  width: 90%;
 	display: grid;
 	grid-template-columns: repeat(2,1fr);
 	grid-template-rows: repeat(5,1fr);
-  	border: 2px solid 474747;
-	border-radius: 20px;
-	margin: 15px 0;
+  border: 2px solid 474747;
+	border-radius: 2vw;
+	margin: .5rem 0;
 	/* margin-bottom: 15px;  */
 	border: 2px solid #474747; 
 	box-shadow: 
-	 0 0 0 3px #fffff0,    
-	0 0 0 7px #474747;  
-	padding: 10px;
-	border-radius: 15px; 
+	  0 0 0 3px #fffff0,    
+	  0 0 0 7px #474747;  
+	padding: 1vw;
 }
 .near-station-list__item p {
 	
@@ -100,16 +100,28 @@ font-size: 1.5vw;
 	grid-row: 5/6;
 }
 
-@media (max-width: 500px) {
+@media (min-width: 350px) and (max-width: 650px) {
 	.near-station-list_link {
 		font-size: 4vw;
 	}
   .near-station-list__list {
     padding: 0;  
     display: grid;
-    gap: 15px;
+    gap: 1vw;
     grid-template-columns: repeat(1, 1fr);
     /* grid-template-rows: repeat(); */
+  }
+
+}
+@media (min-width:651px) and (max-width: 1150px) {
+	.near-station-list_link {
+		font-size: 3vw;
+	}
+  .near-station-list__list {
+    padding: 0;  
+    display: grid;
+    gap: 1vw;
+    grid-template-columns: repeat(2, 1fr);
   }
 
 }
