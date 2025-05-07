@@ -36,7 +36,6 @@ const NearStationList = observer(() => {
   return (
     <div className='near-station-container'>
       <h1>Ближайшая станция </h1>
-      <ul className='near-station-list__list'>        
       {nearestStation?.type_choices?.suburban?.desktop_url && (
       <Link 
         className='near-station-list_link' 
@@ -45,6 +44,8 @@ const NearStationList = observer(() => {
         Ближайшая станция: {nearestStation.title}
       </Link>
     )}
+      <ul className='near-station-list__list'>        
+      
         {stations.map((station: Station, i: number) => (
           <li key={station.code} className='near-station-list__item'>
             <h3 className='near-station-list__title'>{station.title}</h3>

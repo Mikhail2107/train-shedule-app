@@ -21,13 +21,24 @@ text-decoration: none;
 font-size: 1.5vw;
 
 }
+.near-station-list__list a{
+  width: max-content;
+  margin: 0 auto;
+
+}
 .near-station-list_link:hover {
 	font-weight: bold;
 	color: gray;
 }
 .near-station-list__list {
+  padding: 0;  
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(); */
+}
+.near-station-list__list{
   list-style: none;
-padding: 0;
 }
 .near-station-list__near-station {
   
@@ -41,7 +52,7 @@ padding: 0;
 	grid-template-rows: repeat(5,1fr);
   	border: 2px solid 474747;
 	border-radius: 20px;
-	margin: 15px auto 0;
+	margin: 15px 0;
 	/* margin-bottom: 15px;  */
 	border: 2px solid #474747; 
 	box-shadow: 
@@ -93,4 +104,12 @@ padding: 0;
 	.near-station-list_link {
 		font-size: 4vw;
 	}
+  .near-station-list__list {
+    padding: 0;  
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(1, 1fr);
+    /* grid-template-rows: repeat(); */
+  }
+
 }
