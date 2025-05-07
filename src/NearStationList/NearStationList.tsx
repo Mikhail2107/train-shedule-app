@@ -55,15 +55,15 @@ const NearStationList = observer(() => {
             <span className='near-station-list__item-info travel-time'>Время в пути  до станции:</span>
             <span className='near-station-list__item-info travel-walk'>Пешком:{travelTime(station.distance,5)}</span>
             <span className='near-station-list__item-info travel-run'>Бегом:{travelTime(station.distance,10)}</span>
-            {station.code && <span className='station-majority'>{station.code}</span>}
+            {/* {station.code && <span className='station-majority'>{station.code}</span>}
             {station.majority && <span>{station.majority}</span>}
-            {station.type && <span>{station.transport_type}</span>}
+            {station.type && <span>{station.transport_type}</span>} */}
             {station.type_choices.suburban && (
               <a 
                 href={station.type_choices.suburban.desktop_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                style={{ marginRight: '10px' }}
+                className="schedule__link"
               >
                 Расписание электричек
               </a>
@@ -74,6 +74,7 @@ const NearStationList = observer(() => {
                 href={station.type_choices.train.desktop_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
+                className="schedule__link"
               >
                 Расписание поездов
               </a>
