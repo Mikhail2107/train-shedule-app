@@ -1,8 +1,8 @@
-import { makeAutoObservable, runInAction } from 'mobx';
-import { ApiResponse } from '../interfaces/interfaces';
+import { makeAutoObservable, runInAction, computed } from 'mobx';
+import { toJS } from 'mobx';
+import { ApiResponse, Station } from '../interfaces/interfaces';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-
 const URL_DEFAULT = 'https://api.rasp.yandex.net/v3.0/';
 
 export class StationStore {
@@ -14,7 +14,10 @@ export class StationStore {
   latitude: number | null = null;
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {
+      filteredStations: computed,      // Помечаем как вычисляемое свойство
+      nearestFilteredStation: computed // И это тоже
+    });
     this.initGeolocation();
   }
 
@@ -62,5 +65,20 @@ export class StationStore {
         this.loading = false;
       });
     }
+  }
+  get filteredStations(): Station[] {
+    if (!this.data?.stations) return [];
+    
+    return toJS(this.data.stations).filter(station => 
+      station.transport_type === 'train' && 
+      station.title.toLowerCase() !== "ростов-берег"
+    );
+  }
+
+  /**
+   * Ближайшая станция из отфильтрованного списка
+   */
+  get nearestFilteredStation(): Station | null {
+    return this.filteredStations[0] || null;
   }
 }

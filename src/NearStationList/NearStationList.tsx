@@ -1,16 +1,16 @@
-import { toJS } from 'mobx';
-import { Station, ApiResponse } from '../interfaces/interfaces';
+// import { toJS } from 'mobx';
+import { Station } from '../interfaces/interfaces';
 import './NearStationList.css';
 import { observer } from 'mobx-react-lite';
-// import { rootStore } from '../stores';
+import { rootStore } from '../stores';
 import { Link } from 'react-router-dom';
 
-interface NearStationListProps {
-  data: ApiResponse;
-}
+// interface NearStationListProps {
+//   data: ApiResponse;
+// }
 
-const NearStationList = observer(({ data }: NearStationListProps) => {
-  // const { stationStore } = rootStore;
+const NearStationList = observer(() => {
+  const { stationStore } = rootStore;
   
   const travelTime = (distance:number, mode: number): string => {
     let hour:number | string = 0;
@@ -22,15 +22,17 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
 
     return `${hour}ч. ${minutes}мин.`
   }
+  // const filterdStation = (arr: Station[]) => {
+  //   return toJS(arr).filter(item => item.transport_type === 'train' && item.title.toLowerCase() != "Ростов-берег".toLowerCase());
+  // };
   
-  const stations = data?.stations;
-  const nearestStation = stations?.[0];
   
-  const filterdStation = (arr: Station[]) => {
-    return toJS(arr).filter(item => item.transport_type === 'train' && item.title.toLowerCase() != "Ростов-берег".toLowerCase());
-  };
-  
-  const filtredArr = (filterdStation(stations));
+  // const stations = data?.stations;
+  // const filtredArr = (filterdStation(stations));
+  // const nearestStation = filtredArr?.[0];
+  const stations = stationStore.filteredStations;
+  const nearestStation = stationStore.nearestFilteredStation;
+
   return (
     <div className='near-station-container'>
       <h1>Ближайшая станция </h1>
@@ -38,12 +40,12 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
       {nearestStation?.type_choices?.suburban?.desktop_url && (
       <Link 
         className='near-station-list_link' 
-        to={nearestStation.type_choices.suburban.touch_url}
+        to={nearestStation.type_choices.suburban.desktop_url}
       >
         Ближайшая станция: {nearestStation.title}
       </Link>
     )}
-        {filtredArr.map((station: Station, i: number) => (
+        {stations.map((station: Station, i: number) => (
           <li key={station.code} className='near-station-list__item'>
             <h3 className='near-station-list__title'>{station.title}</h3>
             <span className='near-station-list__item-info station-type'>Тип: {i}</span>
