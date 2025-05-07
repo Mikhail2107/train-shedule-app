@@ -1,3 +1,4 @@
+import { toJS } from 'mobx';
 import { Station, ApiResponse } from '../interfaces/interfaces';
 import './NearStationList.css';
 import { observer } from 'mobx-react-lite';
@@ -24,6 +25,12 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
   
   const stations = data?.stations;
   const nearestStation = stations?.[0];
+  
+  const filterdStation = (arr: Station[]) => {
+    return toJS(arr).filter(item => item.transport_type === 'train' && item.title.toLowerCase() != "Ростов-берег".toLowerCase());
+  };
+  
+  const filtredArr = (filterdStation(stations));
   return (
     <div className='near-station-container'>
       <h1>Ближайшая станция </h1>
@@ -36,7 +43,7 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
         Ближайшая станция: {nearestStation.title}
       </Link>
     )}
-        {data.stations.map((station: Station, i: number) => (
+        {filtredArr.map((station: Station, i: number) => (
           <li key={station.code} className='near-station-list__item'>
             <h3 className='near-station-list__title'>{station.title}</h3>
             <span className='near-station-list__item-info station-type'>Тип: {i}</span>
@@ -47,6 +54,7 @@ const NearStationList = observer(({ data }: NearStationListProps) => {
             <span className='near-station-list__item-info travel-run'>Бегом:{travelTime(station.distance,10)}</span>
             {station.code && <span className='station-majority'>{station.code}</span>}
             {station.majority && <span>{station.majority}</span>}
+            {station.type && <span>{station.transport_type}</span>}
             {station.type_choices.suburban && (
               <a 
                 href={station.type_choices.suburban.desktop_url} 

@@ -31,7 +31,7 @@ const ScheduleNear = observer(() => {
       
       {scheduleStore.scheduleData?.search && (
         <div className="schedule-near-route-info">
-          <h2>
+          <h2 className="schedule-near-title">
             Маршрут: {scheduleStore.scheduleData.search.from.title} →{' '}
             {scheduleStore.scheduleData.search.to.title}
           </h2>

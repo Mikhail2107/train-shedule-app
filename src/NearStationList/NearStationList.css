@@ -17,7 +17,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 outline: none;
-text-decoration: none;font-size: 1.5vw;
+text-decoration: none;
+font-size: 1.5vw;
 
 }
 .near-station-list_link:hover {
@@ -26,7 +27,7 @@ text-decoration: none;font-size: 1.5vw;
 }
 .near-station-list__list {
   list-style: none;
-	padding: 0;
+padding: 0;
 }
 .near-station-list__near-station {
   
@@ -38,12 +39,16 @@ text-decoration: none;font-size: 1.5vw;
 	display: grid;
 	grid-template-columns: repeat(2,1fr);
 	grid-template-rows: repeat(5,1fr);
-  border: 1px solid gray;
+  	border: 2px solid 474747;
 	border-radius: 20px;
-	margin: 10px auto 0;
-	margin-bottom: 15px;
+	margin: 15px auto 0;
+	/* margin-bottom: 15px;  */
+	border: 2px solid #474747; 
+	box-shadow: 
+	 0 0 0 3px #fffff0,    
+	0 0 0 7px #474747;  
 	padding: 10px;
-	box-shadow: 0px 0px 5px 5px #474a51;
+	border-radius: 15px; 
 }
 .near-station-list__item p {
 	
@@ -82,4 +87,10 @@ text-decoration: none;font-size: 1.5vw;
 .station-majority {
 	grid-column: 1/3;
 	grid-row: 5/6;
+}
+
+@media (max-width: 500px) {
+	.near-station-list_link {
+		font-size: 4vw;
+	}
 }
