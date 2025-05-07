@@ -1,4 +1,3 @@
-// src/mobx-config.ts
 import { configure } from 'mobx';
 
 configure({

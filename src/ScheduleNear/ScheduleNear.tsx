@@ -24,7 +24,7 @@ const ScheduleNear = observer(() => {
     .sort((a, b) => 
       new Date(a.departure).getTime() - new Date(b.departure).getTime()
     );
-
+    
   return (
     <div className="schedule-near-container">
       <h1>Расписание электричек</h1>
