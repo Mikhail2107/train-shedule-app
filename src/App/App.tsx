@@ -5,6 +5,7 @@ import ScheduleNear from '../ScheduleNear/ScheduleNear';
 import MainPage from '../MainPage/MainPage';
 import { rootStore } from '../stores';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import CheckSation from '../CheckSation/CheckSation';
 
 function App() {
   const { stationStore } = rootStore;
@@ -21,6 +22,8 @@ function App() {
           <Route path={'/'} element={<MainPage />} />
           <Route path={'/nearest'} element={<NearStationList data={stationStore.data} />} />
           <Route path={'/schedule'} element={<ScheduleNear />} />
+          <Route path={'/check-station'} element={<CheckSation />} />
+
           <Route path={'/*'} element={<ErrorPage />} />
 
         </Routes>

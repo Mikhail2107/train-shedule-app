@@ -4,15 +4,20 @@
   flex-direction: column;
   border: 1px solid #474a51;
   border-radius: 20px;
+  list-style: none;
+  padding: 0;
 }
 .main-page__link {
   margin: 5px auto;
-  font-weight: 500;
-  color: #fffff0;
   font-size: 24px;
-  padding:5px 10px;
+}
+.main-page__link a {
+  color: #fffff0;
   background-color: #474a51;
   outline: none;
   text-decoration: none;
   border-radius: 20px;
+  padding:0px 10px;
+  font-weight: 500;
+
 }
