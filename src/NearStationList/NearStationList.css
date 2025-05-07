@@ -107,6 +107,9 @@ font-size: 1.5vw;
 	.near-station-list_link {
 		font-size: 4vw;
 	}
+	.near-station-list__title {
+		font-size: 2vw;
+	}
   .near-station-list__list {
     padding: 0;  
     display: grid;
@@ -121,7 +124,8 @@ font-size: 1.5vw;
 	}
 	.near-station-list__title {
 		font-size: 2.5vw;
-	}  	.near-station-list__list {
+	}  	
+	.near-station-list__list {
     padding: 0;  
     display: grid;
     gap: 1vw;
