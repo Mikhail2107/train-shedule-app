@@ -3,7 +3,13 @@
 import { Link } from 'react-router-dom';
 import './MainPage.css';
 
-const linksList = [
+interface LinkProps { 
+  id: number;
+  link: string;
+  title: string;
+}
+
+const linksList:LinkProps[] = [
   {id: 1, link: '/nearest', title: "Ближайшие станции"},
   {id: 2, link: '/schedule', title: "Расписание"},
   {id: 3, link: '/check-station', title: "Выбор станций"},

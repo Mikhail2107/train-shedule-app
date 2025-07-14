@@ -1,0 +1,32 @@
+.checked-station__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    width: 50vw;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 700;
+}
+.checked-station__item {
+    margin: 0.7rem;
+    border: 2px solid #474747; 
+    border-radius: 2vh;
+    padding: 1vw;
+	box-shadow: 
+	  0 0 0 3px #fffff0,    
+	  0 0 0 7px #474747;  
+    cursor: pointer;
+}
+.checked-station__item:hover {    
+    cursor: pointer;
+}
+.checked-station__item:active, .checked-station__title:active {    
+    color: #fffff0;
+    background-color: #474747;
+}
+.checked-station__title {
+	padding: 0.5vw;
+    border-radius: inherit;
+}
+

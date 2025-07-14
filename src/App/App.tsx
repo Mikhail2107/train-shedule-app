@@ -5,7 +5,7 @@ import NearStationList from '../NearStationList/NearStationList';
 import ScheduleNear from '../ScheduleNear/ScheduleNear';
 import MainPage from '../MainPage/MainPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
-import CheckStation from '../CheckSation/CheckSation';
+import CheckStation from '../CheckStation/CheckStation';
 import { rootStore } from '../stores';
 
 const AppWrapper = observer(() => {
