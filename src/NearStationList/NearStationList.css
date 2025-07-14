@@ -100,7 +100,6 @@ font-size: 1.5vw;
 }
 .schedule__link {
 	grid-column: 1/3;
-	/* grid-row: 5/6; */
 }
 
 @media (min-width: 350px) and (max-width: 650px) {
@@ -110,11 +109,11 @@ font-size: 1.5vw;
 	.near-station-list__title {
 		font-size: 2vw;
 	}
-  .near-station-list__list {
-    padding: 0;  
-    display: grid;
-    gap: 1vw;
-    grid-template-columns: repeat(1, 1fr);
+  	.near-station-list__list {
+		padding: 0;  
+		display: grid;
+		gap: 1vw;
+		grid-template-columns: repeat(1, 1fr);
   }
 
 }
@@ -126,10 +125,10 @@ font-size: 1.5vw;
 		font-size: 2.5vw;
 	}  	
 	.near-station-list__list {
-    padding: 0;  
-    display: grid;
-    gap: 1vw;
-    grid-template-columns: repeat(2, 1fr);
+		padding: 0;  
+		display: grid;
+		gap: 1vw;
+		grid-template-columns: repeat(2, 1fr);
   }
 
 }
