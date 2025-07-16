@@ -1,3 +1,11 @@
+
+.checked__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .checked-station__list {
     list-style: none;
     padding: 0;
@@ -9,10 +17,11 @@
     font-weight: 700;
 }
 .checked-station__item {
-    margin: 0.7rem;
+    position: relative;
+    margin:0.7rem;
     border: 2px solid #474747; 
     border-radius: 2vh;
-    padding: 1vw;
+    padding: 1.1rem;
 	box-shadow: 
 	  0 0 0 3px #fffff0,    
 	  0 0 0 7px #474747;  
@@ -20,13 +29,19 @@
 }
 .checked-station__item:hover {    
     cursor: pointer;
+    /* background-color: #474747; */
 }
-.checked-station__item:active, .checked-station__title:active {    
+.checked-station__item:active{    
     color: #fffff0;
     background-color: #474747;
 }
 .checked-station__title {
-	padding: 0.5vw;
+	padding: 1rem;
     border-radius: inherit;
+}
+.checked-station__title:active {
+    color: #fffff0;
+    background-color: #474747;
+
 }
 
